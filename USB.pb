@@ -1,4 +1,5 @@
-﻿DeclareModule USB
+﻿
+DeclareModule USB
   ;-----------------------------------------------------------
   ;-       USB Constants
   ;{----------------------------------------------------------
@@ -144,7 +145,6 @@ Module USB
   ;}----------------------------------------------------------
   ;-       USB -> Function
   ;{----------------------------------------------------------
-  
   Procedure Init()
     LoadLibrary("hid.dll", @HID_DLL)
     LoadLibrary("setupapi.dll", @SETUPAPI_DLL)
@@ -275,7 +275,54 @@ Module USB
   ;}----------------------------------------------------------
 EndModule
 
-; IDE Options = PureBasic 5.60 (Windows - x86)
-; Folding = YCCg
+; #INDEX# =======================================================================================================================
+; Compile .........: Компиляция в DLL
+; ===============================================================================================================================
+CompilerIf #PB_Compiler_DLL And Not #PB_Compiler_Debugger
+  
+  ProcedureDLL Init()
+    ProcedureReturn USB::Init()
+  EndProcedure
+  
+  ProcedureDLL Device(Key.l, PID.u = USB::#PID, VID.u = USB::#VID, TX.l = USB::#TX, RX.l = USB::#RX)
+    ProcedureReturn USB::Device(Key.l, PID.u, VID.u, TX.l, RX.l)
+  EndProcedure
+  
+  ProcedureDLL Close(*USB.USB::USB)
+    ProcedureReturn USB::Close(*USB)
+  EndProcedure
+  
+  ProcedureDLL ReadD(*USB.USB::USB)
+    ProcedureReturn USB::ReadD(*USB)
+  EndProcedure
+  
+  ProcedureDLL WriteD(*USB.USB::USB)
+    ProcedureReturn USB::WriteD(*USB)
+  EndProcedure
+  
+  ProcedureDLL WriteRead(*USB.USB::USB)
+    ProcedureReturn USB::WriteRead(*USB)
+  EndProcedure
+  
+  ProcedureDLL GetKey(*USB.USB::USB)
+    ProcedureReturn USB::GetKey(*USB)
+  EndProcedure
+  
+  ProcedureDLL RunB(*USB.USB::USB, Party.b, Detail1.b = $00, Detail2.b = $00, Detail3.b = $00, Detail4.b = $00, Detail5.b = $00)
+    ProcedureReturn USB::RunB(*USB, Party.b, Detail1.b, Detail2.b, Detail3.b, Detail4.b, Detail5.b)
+  EndProcedure
+  
+  ProcedureDLL.b ReadB(*USB.USB::USB, Offset.l = 0)
+    ProcedureReturn USB::ReadB(*USB, Offset.l)
+  EndProcedure
+  
+CompilerEndIf
+
+; IDE Options = PureBasic 5.50 (Windows - x86)
+; ExecutableFormat = Shared dll
+; CursorPosition = 269
+; FirstLine = 1
+; Folding = YSCA--
 ; EnableXP
 ; EnableAdmin
+; Executable = Bin\USB.dll
