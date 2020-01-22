@@ -1,4 +1,12 @@
-﻿
+﻿; #INDEX# =======================================================================================================================
+; Title .........: USB
+; Version .......: 1.0
+; Language ......: Русский
+; Description ...: Библиотка для работы с интерфейсом USB.
+; Author ........: GreenBytes ( https://vk.com/greenbytes )
+; Dll ...........: hid.dll, setupapi.dll
+; ===============================================================================================================================
+
 DeclareModule USB
   ;-----------------------------------------------------------
   ;-       USB Constants
@@ -320,9 +328,8 @@ CompilerEndIf
 
 ; IDE Options = PureBasic 5.50 (Windows - x86)
 ; ExecutableFormat = Shared dll
-; CursorPosition = 269
-; FirstLine = 1
-; Folding = YSCA--
+; CursorPosition = 1
+; Folding = ZCAA--
 ; EnableXP
 ; EnableAdmin
 ; Executable = Bin\USB.dll
